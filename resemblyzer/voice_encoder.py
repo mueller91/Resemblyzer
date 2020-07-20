@@ -1,5 +1,5 @@
-from resemblyzer.hparams import *
-from resemblyzer import audio
+from Resemblyzer.resemblyzer import audio
+from Resemblyzer.resemblyzer.hparams import *
 from pathlib import Path
 from typing import Union, List
 from torch import nn
@@ -30,7 +30,7 @@ class VoiceEncoder(nn.Module):
         self.device = device
             
         # Load the pretrained model'speaker weights
-        weights_fpath = Path(__file__).resolve().parent.joinpath("pretrained.pt")
+        # weights_fpath = Path(__file__).resolve().parent.joinpath("pretrained.pt")
         if not weights_fpath.exists():
             raise Exception("Couldn't find the voice encoder pretrained model at %s." % 
                             weights_fpath)

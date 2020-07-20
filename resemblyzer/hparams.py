@@ -1,5 +1,7 @@
 
 ## Mel-filterbank
+from pathlib import Path
+
 mel_window_length = 25  # In milliseconds
 mel_window_step = 10    # In milliseconds
 mel_n_channels = 40
@@ -31,3 +33,6 @@ model_hidden_size = 256
 model_embedding_size = 256
 model_num_layers = 3
 
+# weights_fpath = Path('/opt/mueller/nvidia_tacotron2/speaker_encoder/pretrained_models/encoder_sberryman.pt')
+# weights_fpath = Path('/opt/mueller/nvidia_tacotron2/speaker_encoder/pretrained_models/encoder_default.pt')
+weights_fpath = Path('/opt/mueller/nvidia_tacotron2/Resemblyzer/resemblyzer/pretrained.pt')

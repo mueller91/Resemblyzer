@@ -10,7 +10,7 @@ import struct
 int16_max = (2 ** 15) - 1
 
 
-def preprocess_wav(fpath_or_wav: Union[str, Path, np.ndarray], source_sr: Optional[int]=None):
+def preprocess_wav(fpath_or_wav: Union[str, Path, np.ndarray], source_sr: Optional[int]=None, return_sr = False):
     """
     Applies preprocessing operations to a waveform either on disk or in memory such that  
     The waveform will be resampled to match the data hyperparameters.
@@ -35,8 +35,11 @@ def preprocess_wav(fpath_or_wav: Union[str, Path, np.ndarray], source_sr: Option
     # Apply the preprocessing: normalize volume and shorten long silences 
     wav = normalize_volume(wav, audio_norm_target_dBFS, increase_only=True)
     wav = trim_long_silences(wav)
-    
-    return wav
+
+    if not return_sr:
+        return wav
+    else:
+        return wav, source_sr
 
 
 def wav_to_mel_spectrogram(wav):

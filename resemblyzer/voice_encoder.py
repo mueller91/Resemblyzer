@@ -32,7 +32,7 @@ class VoiceEncoder(nn.Module):
         # Load the pretrained model'speaker weights
         # weights_fpath = Path(__file__).resolve().parent.joinpath("pretrained.pt")
         if not weights_fpath.exists():
-            raise Exception("Couldn't find the voice encoder pretrained model at %s." % 
+            raise Exception("Couldn't find the Resemblyzer voice encoder pretrained model at %s." %
                             weights_fpath)
         start = timer()
         checkpoint = torch.load(weights_fpath, map_location="cpu")
@@ -40,7 +40,7 @@ class VoiceEncoder(nn.Module):
         self.to(device)
         
         if verbose:
-            print("Loaded the voice encoder model on %s in %.2f seconds." % 
+            print("Loaded the Resemblyzer voice encoder model on %s in %.2f seconds." %
                   (device.type, timer() - start))
 
     def forward(self, mels: torch.FloatTensor):

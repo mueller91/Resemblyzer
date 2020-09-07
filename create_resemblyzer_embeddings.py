@@ -35,14 +35,14 @@ if __name__ == "__main__":
         # [text, file, speaker_id, start, end]
         preprocessor = get_preprocessor_by_name(name)
         meta_data = preprocessor(path)
-        # for m in tqdm(meta_data, desc="Processing wav -> embedding"):
-        #     text, file, spid, start, end = m
-        #     file_embds = file_to_embd(file)
-        #     os.makedirs(str(file_embds.parent), exist_ok=True)
-        #     wav = res_pp(file)
-        #     embds = res_enc.embed_utterance(wav)
-        #     numpy.save(file_embds, embds)
-        # done_datasets.append(dataset)
+        for m in tqdm(meta_data, desc="Processing wav -> embedding"):
+            text, file, spid, start, end = m
+            file_embds = get_emb_path(file)
+            os.makedirs(str(file_embds.parent), exist_ok=True)
+            wav = res_pp(file)
+            embds = res_enc.embed_utterance(wav)
+            numpy.save(file_embds, embds)
+        done_datasets.append(dataset)
 
         d = defaultdict(lambda: [])
         for m in tqdm(meta_data, desc="Creating speaker dict"):

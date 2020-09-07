@@ -1,5 +1,5 @@
 from Resemblyzer.resemblyzer import audio
-from Resemblyzer.resemblyzer.hparams import *
+from Resemblyzer.resemblyzer.ResemblyzerHparams import *
 from pathlib import Path
 from typing import Union, List
 from torch import nn

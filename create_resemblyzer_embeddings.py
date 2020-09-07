@@ -35,19 +35,20 @@ if __name__ == "__main__":
         # [text, file, speaker_id, start, end]
         preprocessor = get_preprocessor_by_name(name)
         meta_data = preprocessor(path)
-        for m in tqdm(meta_data, desc="Processing wav -> embedding"):
-            text, file, spid, start, end = m
-            file_embds = get_emb_path(file)
-            os.makedirs(str(file_embds.parent), exist_ok=True)
-            wav = res_pp(file)
-            embds = res_enc.embed_utterance(wav)
-            numpy.save(file_embds, embds)
-        done_datasets.append(dataset)
+        # for m in tqdm(meta_data, desc="Processing wav -> embedding"):
+        #     text, file, spid, start, end = m
+        #     file_embds = get_emb_path(file)
+        #     os.makedirs(str(file_embds.parent), exist_ok=True)
+        #     wav = res_pp(file)
+        #     embds = res_enc.embed_utterance(wav)
+        #     numpy.save(file_embds, embds)
+        # done_datasets.append(dataset)
 
         d = defaultdict(lambda: [])
         for m in tqdm(meta_data, desc="Creating speaker dict"):
             text, file, spid, start, end = m
-            d[spid].append(file)
+            if end - start > 1.6:
+                d[spid].append(file)
 
         for spid in tqdm(d.keys(), desc="Averaging embeddings"):
             all_embds = [str(get_emb_path(f)) + ".npy" for f in d[spid]]
@@ -59,6 +60,6 @@ if __name__ == "__main__":
             saveto_paths = [get_emb_path(f).parent / 'averaged_embedding.npy' for f in d[spid]]
             for s in saveto_paths:
                 numpy.save(s, avg_emb)
-            # print(f"Cosine sim for speaker {spid} to averaged embeddings is (avg'd): {cosine_sims.mean():.3f}. Saving to {s} and others")
+            print(f"Cosine sim for speaker {spid} to averaged embeddings is (avg'd): {cosine_sims.mean():.3f}. Saving to {s} and others")
 
 

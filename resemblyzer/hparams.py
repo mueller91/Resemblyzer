@@ -35,5 +35,6 @@ model_num_layers = 3
 
 # weights_fpath = Path('/opt/mueller/nvidia_tacotron2/speaker_encoder/pretrained_models/encoder_sberryman.pt')
 # weights_fpath = Path('/opt/mueller/nvidia_tacotron2/speaker_encoder/pretrained_models/encoder_default.pt')
-weights_fpath = Path('/home/mueller/Downloads/encoder_mdl_ls_cv_vctk_vc12_bak_480000.pt')
+weights_fpath = Path('/home/mueller/Downloads/encoder_mdl_ls_cv_vctk_vc12_bak_945000.pt')
+# weights_fpath = Path('/home/mueller/Downloads/encoder_mdl_ls_cv_vctk_vc12_bak_480000.pt')
 # weights_fpath = Path('/opt/mueller/nvidia_tacotron2/Resemblyzer/resemblyzer/pretrained.pt')

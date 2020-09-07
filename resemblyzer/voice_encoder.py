@@ -40,8 +40,7 @@ class VoiceEncoder(nn.Module):
         self.to(device)
         
         if verbose:
-            print("Loaded the Resemblyzer voice encoder model on %s in %.2f seconds." %
-                  (device.type, timer() - start))
+            print(f"Loaded the Resemblyzer voice encoder model on {device.type} from {weights_fpath}")
 
     def forward(self, mels: torch.FloatTensor):
         """
